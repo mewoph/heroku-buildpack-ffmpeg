@@ -11,8 +11,10 @@ DOWNLOAD_URL="https://mediuum.s3.amazonaws.com/development-mewoph@mew-mbp.local/
 
 echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
-echo $BUILD_DIR
+echo "go to directory: " + $BUILD_DIR
 cd $BUILD_DIR
+
+echo ${PWD##*/}
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $DOWNLOAD_URL | tar xz
@@ -22,3 +24,5 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="$PATH:vendor/ffmpeg/bin"' >> $PROFILE_PATH
 echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/ffmpeg/lib"' >> $PROFILE_PATH
+
+echo "profile path: " + $PROFILE_PATH
